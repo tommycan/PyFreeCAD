@@ -92,5 +92,16 @@ tot = makeBaseWithMultiplePillars(pillar, lxa, lya, lza, nx, ny)
 tot.rotate(Base.Vector(0,lya/2.0,0),Base.Vector(1,0,0),-90)
 tot.translate(Base.Vector(-lxa/2.0,-lya/2.0,0))
 tot.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/test.stl")
+
+#bigbox = Part.makeBox(lxb, lyb, lzb, Base.Vector(-0.03,-0.05,-0.025))
+#bigbox = Part.makeBox(lxb, lzb, lyb, Base.Vector(-0.03,-0.05,-0.025))
+dz = 5.0e-5
+bigbox = Part.makeBox(lxb, lzb+dz, lyb, Base.Vector(-0.03,-lzb-dz/2,-0.025))
+bigbox.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/bigbox.stl")
+
+totbigbox = tot.fuse(bigbox)
+totbigbox.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/totbigbox.stl")
+
+Part.show(bigbox);
 Part.show(tot)
 Gui.SendMsgToActiveView("ViewFit")
