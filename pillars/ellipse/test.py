@@ -85,6 +85,9 @@ lza=5e-3
 lxb=60e-3
 lyb=50e-3
 lzb=5e-3
+lxc=35.00e-3
+lyc=35.00e-3
+lzc=5e-3
 nx=3
 ny=12
 #tot = makeBaseWithMultiplePillars(fuse, lx, ly, lz, nx, ny)
@@ -93,15 +96,20 @@ tot.rotate(Base.Vector(0,lya/2.0,0),Base.Vector(1,0,0),-90)
 tot.translate(Base.Vector(-lxa/2.0,-lya/2.0,0))
 tot.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/test.stl")
 
-#bigbox = Part.makeBox(lxb, lyb, lzb, Base.Vector(-0.03,-0.05,-0.025))
-#bigbox = Part.makeBox(lxb, lzb, lyb, Base.Vector(-0.03,-0.05,-0.025))
 dz = 5.0e-5
-bigbox = Part.makeBox(lxb, lzb+dz, lyb, Base.Vector(-0.03,-lzb-dz/2,-0.025))
+bigbox = Part.makeBox(lxb, lzb+dz, lyb, Base.Vector(-lxb/2.0,-lzb-dz/2,-lyb/2.0))
 bigbox.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/bigbox.stl")
 
-totbigbox = tot.fuse(bigbox)
-totbigbox.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/totbigbox.stl")
+dz = 5.0e-5
+smallbox = Part.makeBox(lxc, lzc/2.0+dz, lyc, Base.Vector(-lxb/2.0+(lxb/2.0-lxc/2.0), 0.0-dz,-lyb/2.0+(lyb/2.0-lyc/2.0)))
+#smallbox.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/bigbox.stl")
 
+totbigbox = tot.fuse(bigbox)
+totbigbox = totbigbox.fuse(smallbox)
+totbigbox.exportStl("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/fc-heatsink.stl")
+totbigbox.exportStep("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/fc-heatsink.stp")
+
+Part.show(smallbox);
 Part.show(bigbox);
 Part.show(tot)
 Gui.SendMsgToActiveView("ViewFit")
