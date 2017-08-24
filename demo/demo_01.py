@@ -31,8 +31,8 @@ def makePillarWithChamfer(iFace, iRadius=0.2, iExtrudeDir=Base.Vector(0.0,0.0,5.
 
 	return pillar
 
-isGui=True;
-#isGui=False;
+#isGui=True; doSave=False
+isGui=False; doSave=True
 
 delay = 2.0
 
@@ -62,3 +62,7 @@ if isGui:
   Gui.SendMsgToActiveView("ViewFit")
   time.sleep(delay)
   Gui.ActiveDocument.getObject("Shape002").Visibility=False
+
+if doSave:
+  pillar.exportStl("pillar.stl")
+  pillar.exportStep("pillar.stp")

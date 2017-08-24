@@ -44,8 +44,8 @@ def makeFuseBoxPillars(iBox, iPillar, iLx=40, iLy=60, iLz=1, iNx=4, iNy=6):
 	
 	return ret
 
-isGui=True;
-#isGui=False;
+#isGui=True; doSave=False
+isGui=False; doSave=True
 
 delay = 0.25
 
@@ -97,3 +97,6 @@ if isGui:
   Gui.ActiveDocument.getObject("Shape003").Visibility=False
 #  Gui.ActiveDocument.getObject("Shape004").Visibility=False
 
+if doSave:
+  fuse.exportStl("fuse.stl")
+  fuse.exportStep("fuse.stp")
