@@ -1,8 +1,7 @@
 import Part, FreeCAD, math, sys, os, time
 from FreeCAD import Base
 
-# execfile("C:/Users/tommy/code/PyFreeCAD/pillars/ellipse/create_ellipse.py")
-# execfile("/home/tommy/scratch/projects/PyFreeCAD/pillars/ellipse/test.py")
+# run script in freecad python console with this command
 # execfile("/home/tommy/scratch/projects/PyFreeCAD/demo/demo_01.py")
 
 def makeEllipseFace(iS1=Base.Vector(2.0,0.0,0.0), iS2=Base.Vector(0.0,1.0,0.0), iC=Base.Vector(0.0,0.0,0.0)):
