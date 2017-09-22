@@ -29,4 +29,5 @@ p = [Base.Vector(0.0, 0.0, 0.0), Base.Vector(1.5, 0.0, 0.0), Base.Vector(0.0, 2.
 ms = makeMuliSphere(r, p);
 Part.show(ms)
 ms.exportStl("ms.stl");
+ms.exportStep("ms.step");
 #ms.exportStl("C:/Users/tommy/projects/PyFreeCAD/multisphere/ms.stl");
