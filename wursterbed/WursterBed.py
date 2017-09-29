@@ -1,13 +1,18 @@
 import Part, FreeCAD, math
 from FreeCAD import Base
 
-# execfile("C:/Users/tommy/code/PyFreeCAD/wursterbed/WursterBed.py")
+# execfile("C:/Users/tommy/projects/PyFreeCAD/wursterbed/WursterBed.py")
 # execfile("/home/tommy/scratch/projects/PyFreeCAD/wursterbed/WursterBed.py");
 
 def makeRevolve(iL = [Base.Vector(0.050,0.0,0.0), Base.Vector(0.125,0.0,0.320)], iRC = Base.Vector(0.0,0.0,0.0), iRA = Base.Vector(0.0,0.0,1.0)):
 	L1 = Part.makePolygon(iL); 
 	W1 = Part.Wire(L1.Edges);
 	return W1.revolve(iRC, iRA);
+
+OutPoly = makeRevolve([Base.Vector(0.050,0.0,0.0), Base.Vector(0.125,0.0,0.320), Base.Vector(0.125,0.0,0.960)], Base.Vector(0.0,0.0,0.0), Base.Vector(0.0,0.0,1.0));
+OutPoly.translate(Base.Vector(0.160,0.160,0.0));
+Part.show(OutPoly);
+#OutPoly.exportStl("OutPoly.stl");
 	
 OutCone = makeRevolve([Base.Vector(0.050,0.0,0.0), Base.Vector(0.125,0.0,0.320)], Base.Vector(0.0,0.0,0.0), Base.Vector(0.0,0.0,1.0));
 OutCone.translate(Base.Vector(0.160,0.160,0.0));
